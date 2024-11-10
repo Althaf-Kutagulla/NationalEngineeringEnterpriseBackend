@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: NationalEngineeringEnterprise
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3306/nationalengineering
+  jpa:
+    database-platform: org.hibernate.dialect.MySQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: update
+
