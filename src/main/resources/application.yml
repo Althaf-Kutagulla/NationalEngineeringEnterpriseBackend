@@ -1,6 +1,6 @@
 spring:
   application:
-    name: NationalEngineeringEnterprise
+    name: NationalEngineeringEnterpriseService
   datasource:
     username: root
     password: root
