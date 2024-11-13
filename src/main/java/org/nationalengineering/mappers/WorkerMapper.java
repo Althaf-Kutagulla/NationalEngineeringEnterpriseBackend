@@ -11,6 +11,7 @@ import java.util.Optional;
 public class WorkerMapper {
     public Worker toWorker(WorkerRequest workerRequest){
         return Worker.builder()
+                .id(workerRequest.id())
                 .firstName(workerRequest.firstName())
                 .lastName(workerRequest.lastName())
                 .phoneNumber(workerRequest.phoneNumber())
@@ -24,6 +25,7 @@ public class WorkerMapper {
 
     public WorkerResponse toWorkerResponse(Worker worker) {
         return new WorkerResponse(
+                worker.getId(),
                 worker.getFirstName(),
                 worker.getLastName(),
                 worker.getPhoneNumber(),
