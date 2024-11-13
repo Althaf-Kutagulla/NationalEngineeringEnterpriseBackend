@@ -17,7 +17,7 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ErrorResponse> handleCustomerException(CustomerNotFoundException customerNotFoundException, WebRequest webRequest){
         return new ResponseEntity<>(
                 new ErrorResponse(
-                        webRequest.getContextPath(),
+                        webRequest.getDescription(false).replace("uri=",""),
                         HttpStatus.NOT_FOUND.toString(),
                         customerNotFoundException.getMessage()
                 ),HttpStatus.NOT_FOUND);
@@ -30,5 +30,16 @@ public class GlobalExceptionHandler {
                 errors.put(error.getField(),error.getDefaultMessage())
         );
         return new ResponseEntity<>(errors,HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler({WorkerNotFoundException.class})
+    public ResponseEntity<ErrorResponse> handleWorkerException(WorkerNotFoundException workerNotFoundException, WebRequest webRequest){
+        String message = webRequest.getContextPath();
+        return new ResponseEntity<>(
+                new ErrorResponse(
+                        webRequest.getDescription(false).replace("uri=",""),
+                        HttpStatus.NOT_FOUND.toString(),
+                        workerNotFoundException.getMessage()
+                ),HttpStatus.NOT_FOUND);
     }
 }
