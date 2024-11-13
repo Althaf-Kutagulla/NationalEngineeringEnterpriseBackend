@@ -18,7 +18,7 @@ public class WorkerController {
     private final WorkerService workerService;
 
     @PostMapping("/create")
-    public ResponseEntity<Integer> createWorker(WorkerRequest workerRequest){
+    public ResponseEntity<Integer> createWorker(@RequestBody WorkerRequest workerRequest){
         return new ResponseEntity<>(workerService.createWorker(workerRequest), HttpStatus.CREATED);
     }
 
@@ -33,7 +33,7 @@ public class WorkerController {
     }
 
     @PutMapping("/update")
-    public ResponseEntity<Boolean> updateWorker(WorkerRequest workerRequest){
+    public ResponseEntity<Boolean> updateWorker(@RequestBody WorkerRequest workerRequest){
         return new ResponseEntity<>(workerService.updateWorker(workerRequest),HttpStatus.OK);
     }
 
