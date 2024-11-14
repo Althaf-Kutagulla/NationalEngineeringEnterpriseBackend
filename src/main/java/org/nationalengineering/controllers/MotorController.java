@@ -22,7 +22,7 @@ public class MotorController {
     }
 
     @GetMapping("{motorId}")
-    public ResponseEntity<MotorResponse> getWorkerById(@PathVariable("motorId") Integer motorId){
+    public ResponseEntity<MotorResponse> getMotorById(@PathVariable("motorId") Integer motorId){
         return new ResponseEntity<>(motorService.getMotorById(motorId),HttpStatus.OK);
     }
 
