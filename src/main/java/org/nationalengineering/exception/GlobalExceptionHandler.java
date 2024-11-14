@@ -42,4 +42,15 @@ public class GlobalExceptionHandler {
                         workerNotFoundException.getMessage()
                 ),HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler({MotorNotFoundException.class})
+    public ResponseEntity<ErrorResponse> handleMotorException(MotorNotFoundException motorNotFoundException, WebRequest webRequest){
+        String message = webRequest.getContextPath();
+        return new ResponseEntity<>(
+                new ErrorResponse(
+                        webRequest.getDescription(false).replace("uri=",""),
+                        HttpStatus.NOT_FOUND.toString(),
+                        motorNotFoundException.getMessage()
+                ),HttpStatus.NOT_FOUND);
+    }
 }
