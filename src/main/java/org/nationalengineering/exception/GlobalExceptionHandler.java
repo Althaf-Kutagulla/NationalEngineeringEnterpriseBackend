@@ -53,4 +53,15 @@ public class GlobalExceptionHandler {
                         motorNotFoundException.getMessage()
                 ),HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler({CategoryNotFoundException.class})
+    public ResponseEntity<ErrorResponse> handleCategoryException(CategoryNotFoundException categoryNotFoundException, WebRequest webRequest){
+        String message = webRequest.getContextPath();
+        return new ResponseEntity<>(
+                new ErrorResponse(
+                        webRequest.getDescription(false).replace("uri=",""),
+                        HttpStatus.NOT_FOUND.toString(),
+                        categoryNotFoundException.getMessage()
+                ),HttpStatus.NOT_FOUND);
+    }
 }
