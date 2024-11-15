@@ -1,15 +1,17 @@
 package org.nationalengineering.entity;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import java.util.List;
 
 @Entity
+@Builder
 @Table(name="categories")
 @Getter
 @Setter
+@AllArgsConstructor
+@RequiredArgsConstructor
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
