@@ -1,12 +1,17 @@
 package org.nationalengineering.service.impl;
 
 import lombok.RequiredArgsConstructor;
+import org.nationalengineering.entity.Category;
 import org.nationalengineering.entity.Product;
+import org.nationalengineering.exception.CategoryNotFoundException;
 import org.nationalengineering.exception.ProductNotFoundException;
 import org.nationalengineering.mappers.ProductMapper;
+import org.nationalengineering.records.CategoryResponse;
 import org.nationalengineering.records.ProductRequest;
 import org.nationalengineering.records.ProductResponse;
+import org.nationalengineering.repository.CategoryRepository;
 import org.nationalengineering.repository.ProductRepository;
+import org.nationalengineering.service.CategoryService;
 import org.nationalengineering.service.ProductService;
 import org.springframework.stereotype.Service;
 
@@ -19,10 +24,14 @@ public class ProductServiceImpl implements ProductService {
 
     private final ProductRepository productRepository;
     private final ProductMapper productMapper;
+    private final CategoryService categoryService;
+
     @Override
     public Integer createProduct(ProductRequest productRequest) {
-        //TODO retrieve and add category object to product
-        Product savedProduct = productRepository.save(productMapper.toProduct(productRequest));
+        CategoryResponse categoryResponse = categoryService.getCategoryById(productRequest.categoryId());
+        Product product = productMapper.toProduct(productRequest);
+        product.setCategory(new Category(categoryResponse.categoryId(), null,null));
+        Product savedProduct = productRepository.save(product);
         return savedProduct.getId();
     }
 
@@ -62,6 +71,8 @@ public class ProductServiceImpl implements ProductService {
         }
         if(productRequest.categoryId()!=null){
             //todo retrieve category object and assign it
+           CategoryResponse categoryResponse = categoryService.getCategoryById(productRequest.categoryId());
+           product.setCategory(new Category(categoryResponse.categoryId(), null,null));
         }
     }
 
