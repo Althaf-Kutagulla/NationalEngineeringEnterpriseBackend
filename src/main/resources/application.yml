@@ -2,12 +2,12 @@ spring:
   application:
     name: NationalEngineeringEnterpriseService
   datasource:
-    username: ${JDBC_DATABASE_USERNAME}
-    password: ${JDBC_DATABASE_PASSWORD}
-    url: ${JDBC_DATABASE_URL}
+    username: root
+    password: althaf
+    url: jdbc:mysql://localhost:3307/nationalengineering
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     show-sql: true
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
 
