@@ -2,9 +2,9 @@ spring:
   application:
     name: NationalEngineeringEnterpriseService
   datasource:
-    username: root
-    password: althaf
-    url: jdbc:mysql://localhost:3307/nationalengineering
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
+    url: ${JDBC_DATABASE_URL}
   jpa:
     database-platform: org.hibernate.dialect.MySQLDialect
     show-sql: true
