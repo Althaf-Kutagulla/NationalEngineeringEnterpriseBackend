@@ -14,7 +14,7 @@ import java.math.BigDecimal;
 @Setter
 public class Product {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
     @ManyToOne(targetEntity = Category.class,fetch = FetchType.EAGER)
