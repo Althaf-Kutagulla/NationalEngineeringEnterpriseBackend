@@ -11,5 +11,4 @@ public class NationalEngineeringEnterpriseApplication {
     public static void main(String[] args) {
         SpringApplication.run(NationalEngineeringEnterpriseApplication.class, args);
     }
-
 }
