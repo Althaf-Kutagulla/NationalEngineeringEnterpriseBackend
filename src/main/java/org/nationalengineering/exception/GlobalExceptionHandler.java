@@ -64,4 +64,14 @@ public class GlobalExceptionHandler {
                         categoryNotFoundException.getMessage()
                 ),HttpStatus.NOT_FOUND);
     }
+
+    @ExceptionHandler({ProductNotFoundException.class})
+    public ResponseEntity<ErrorResponse> handleProductException(ProductNotFoundException productNotFoundException, WebRequest webRequest){
+        return new ResponseEntity<>(
+                new ErrorResponse(
+                        webRequest.getDescription(false).replace("uri=",""),
+                        HttpStatus.NOT_FOUND.toString(),
+                        productNotFoundException.getMessage()
+                ),HttpStatus.NOT_FOUND);
+    }
 }
