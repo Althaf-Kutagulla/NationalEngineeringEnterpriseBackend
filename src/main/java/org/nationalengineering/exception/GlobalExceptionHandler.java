@@ -66,12 +66,44 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler({ProductNotFoundException.class})
-    public ResponseEntity<ErrorResponse> handleProductException(ProductNotFoundException productNotFoundException, WebRequest webRequest){
+    public ResponseEntity<ErrorResponse> handleProductNotException(ProductNotFoundException productNotFoundException, WebRequest webRequest){
         return new ResponseEntity<>(
                 new ErrorResponse(
                         webRequest.getDescription(false).replace("uri=",""),
                         HttpStatus.NOT_FOUND.toString(),
                         productNotFoundException.getMessage()
+                ),HttpStatus.NOT_FOUND);
+    }
+
+    @ExceptionHandler({MotorTicketNotFoundException.class})
+    public ResponseEntity<ErrorResponse> handleMotorTicketException(MotorTicketNotFoundException motorTicketNotFoundException, WebRequest webRequest){
+        return new ResponseEntity<>(
+                new ErrorResponse(
+                        webRequest.getDescription(false).replace("uri=",""),
+                        HttpStatus.NOT_FOUND.toString(),
+                        motorTicketNotFoundException.getMessage()
+                ),HttpStatus.NOT_FOUND);
+    }
+
+
+    @ExceptionHandler({ProductException.class})
+    public ResponseEntity<ErrorResponse> handleProductException(ProductException productException, WebRequest webRequest){
+        return new ResponseEntity<>(
+                new ErrorResponse(
+                        webRequest.getDescription(false).replace("uri=",""),
+                        HttpStatus.BAD_REQUEST.toString(),
+                        productException.getMessage()
+                ),HttpStatus.BAD_REQUEST);
+    }
+
+
+    @ExceptionHandler({ProductUsageNotFoundException.class})
+    public ResponseEntity<ErrorResponse> handleProductNotException(ProductUsageNotFoundException productUsageNotFoundException, WebRequest webRequest){
+        return new ResponseEntity<>(
+                new ErrorResponse(
+                        webRequest.getDescription(false).replace("uri=",""),
+                        HttpStatus.NOT_FOUND.toString(),
+                        productUsageNotFoundException.getMessage()
                 ),HttpStatus.NOT_FOUND);
     }
 }
